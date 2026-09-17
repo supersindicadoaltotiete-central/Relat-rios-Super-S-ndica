@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)file:///Users/kellistefano/Downloads/relatorio_manutencao_zelador_STANDALONE%20(1).html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Super Síndica — Relatório de Manutenção Periódica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Super Síndica — Relatório de Manutenção Periódica_files/css2" rel="stylesheet">
+<script src="./Super Síndica — Relatório de Manutenção Periódica_files/jspdf.umd.min.js"></script>
+<style>
+:root{
+  --purple:#4E2E82; --purple-deep:#3A2160; --orange:#F2691D; --orange-soft:#FCD9C3;
+  --lilac:#EFE9F7; --ink:#231C30; --paper:#FBFAFD; --card:#FFFFFF; --line:#E4DEF0; --muted:#6E6480;
+  --ok:#2F8A5B; --warn:#C98A1D; --danger:#C6432F;
+  --font-display:'Fraunces', serif; --font-body:'IBM Plex Sans', sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --purple:#B79CEA; --purple-deep:#8E74B8; --orange:#FF8A4C; --orange-soft:#4A2E1C;
+    --lilac:#241C36; --ink:#F1ECFB; --paper:#17121F; --card:#1F1830; --line:#3A3050; --muted:#A79BC4;
+    --ok:#5FC98C; --warn:#E8B54D; --danger:#E8695A;
+  }
+}
+:root[data-theme="dark"]{
+  --purple:#B79CEA; --purple-deep:#8E74B8; --orange:#FF8A4C; --orange-soft:#4A2E1C;
+  --lilac:#241C36; --ink:#F1ECFB; --paper:#17121F; --card:#1F1830; --line:#3A3050; --muted:#A79BC4;
+  --ok:#5FC98C; --warn:#E8B54D; --danger:#E8695A;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--font-body); -webkit-font-smoothing:antialiased; padding-bottom:40px;}
+h1,h2,.display{font-family:var(--font-display);}
+.topbar{background:var(--purple); color:#fff; padding:18px 20px;}
+.topbar .mark{font-family:var(--font-display); font-weight:700; font-size:1.3rem;}
+.topbar .tag{font-size:.82rem; opacity:.85; margin-top:2px;}
+.wrap{max-width:640px; margin:0 auto; padding:18px;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; margin-bottom:16px;}
+.card h3{margin:0 0 14px; font-size:1rem; color:var(--purple);}
+.field{margin-bottom:14px;}
+.field label{display:block; font-size:.78rem; font-weight:600; color:var(--muted); margin-bottom:5px;}
+.field input, .field select, .field textarea{
+  width:100%; border:1px solid var(--line); border-radius:9px; padding:10px 12px; font-size:.9rem;
+  background:var(--card); color:var(--ink); font-family:var(--font-body);
+}
+.field textarea{min-height:60px; resize:vertical;}
+.row2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.item-card{background:var(--lilac); border-radius:12px; padding:14px; margin-bottom:12px;}
+.item-card .title{font-weight:700; font-size:.9rem; margin-bottom:2px;}
+.item-card .sub{font-size:.78rem; color:var(--muted); margin-bottom:10px;}
+.status-row{display:flex; gap:8px; margin-bottom:10px;}
+.status-opt{flex:1; text-align:center; padding:9px 4px; border-radius:9px; border:2px solid var(--line); font-weight:700; font-size:.8rem; background:var(--card); color:var(--ink);}
+.status-opt.sel-sim{border-color:var(--ok); background:#DFF3E7; color:var(--ok);}
+.status-opt.sel-nao{border-color:var(--danger); background:#FBE0DB; color:var(--danger);}
+.status-opt.sel-parcial{border-color:var(--warn); background:#FBEBD3; color:var(--warn);}
+.photo-row{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;}
+.photo-btn{border:2px dashed var(--line); border-radius:9px; padding:10px; text-align:center; font-size:.72rem; color:var(--muted); background:var(--card); cursor:pointer; min-height:70px; display:flex; align-items:center; justify-content:center;}
+.photo-btn img{max-width:100%; max-height:60px; border-radius:6px;}
+.item-card textarea{width:100%; border:1px solid var(--line); border-radius:8px; padding:8px; font-size:.82rem; min-height:44px; font-family:var(--font-body); background:var(--card); color:var(--ink);}
+.bucket-empty{color:var(--muted); font-size:.85rem; padding:16px; text-align:center;}
+canvas#sigPad{width:100%; height:140px; border:1px solid var(--line); border-radius:10px; background:#fff; touch-action:none;}
+.btn{border:none; border-radius:10px; padding:13px 18px; font-weight:700; font-size:.92rem; width:100%; margin-bottom:10px; cursor:pointer;}
+.btn-primary{background:var(--orange); color:#fff;}
+.btn-whatsapp{background:#25D366; color:#fff;}
+.btn-ghost{background:transparent; border:1px solid var(--line); color:var(--ink);}
+.small-link{background:none; border:none; color:var(--purple); font-size:.8rem; text-decoration:underline; cursor:pointer; padding:4px 0;}
+.footer-note{text-align:center; font-size:.72rem; color:var(--muted); margin-top:20px;}
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="mark">Super Síndica</div>
+  <div class="tag">Relatório de Manutenção Periódica — comprovação de campo</div>
+</div>
+
+<div class="wrap">
+
+  <div class="card">
+    <h3>1. Condomínio e periodicidade</h3>
+    <div class="field"><label>Condomínio</label>
+      <select id="fCondo"><option value="">Selecione...</option><option value="alvarinho">Residencial Alvarinho</option><option value="happy">Happy Braz Cubas</option><option value="levin">Residencial Lê Vin Garden</option><option value="vistaserra">Residencial Vista da Serra</option><option value="ilhas">Condomínio Residencial Ilhas do Mar</option><option value="morada">Morada Carioca</option></select>
+    </div>
+    <div id="genericoAviso" class="hidden" style="background:var(--orange-soft); border:1px solid var(--orange); border-radius:9px; padding:10px 12px; font-size:.8rem; margin-bottom:14px;">
+      ⚠ Checklist padrão (portão, jardinagem, bombas, quadros elétricos, painéis) — ainda não é a tabela oficial da construtora para este condomínio. Assim que ela chegar, este checklist é substituído pelo específico.
+    </div>
+    <div class="field" id="periodicidadeWrap" style="display:none;"><label>Periodicidade da vistoria</label>
+      <select id="fPeriodicidade"><option value="">Selecione...</option></select>
+    </div>
+  </div>
+
+  <div class="card hidden" id="dadosVisitaCard">
+    <h3>2. Dados da visita</h3>
+    <div class="field"><label>Responsável pela visita</label><input type="text" id="fResponsavel" placeholder="Nome do zelador/manutencista"></div>
+    <div class="row2">
+      <div class="field"><label>Data</label><input type="date" id="fData"></div>
+      <div class="field"><label>Início</label><input type="time" id="fInicio"></div>
+    </div>
+  </div>
+
+  <div class="card hidden" id="checklistCard">
+    <h3>3. Checklist</h3>
+    <div id="checklistItems"></div>
+  </div>
+
+  <div class="card hidden" id="assinaturaCard">
+    <h3>4. Assinatura</h3>
+    <div class="field"><label>Nome de quem assina</label><input type="text" id="fNomeAssinatura" placeholder="Nome completo"></div>
+    <canvas id="sigPad" width="0" height="0"></canvas>
+    <button class="small-link" id="btnLimparAssinatura">Limpar assinatura</button>
+  </div>
+
+  <div class="hidden" id="actionsWrap">
+    <button class="btn btn-primary" id="btnGerarPDF">📄 Gerar PDF do relatório</button>
+    <button class="btn btn-whatsapp" id="btnWhatsapp">✅ Compartilhar via WhatsApp</button>
+    <button class="btn btn-ghost" id="btnLimparForm">Limpar formulário</button>
+  </div>
+
+  <div class="footer-note">Super Síndica do Alto Tietê · este formulário não requer login e não fica salvo em nenhum sistema — gere o PDF e compartilhe com a gestão.</div>
+</div>
+
+<script>
+const CONDOS = {
+  alvarinho: "Residencial Alvarinho",
+  happy: "Happy Braz Cubas",
+  levin: "Residencial Lê Vin Garden",
+  vistaserra: "Residencial Vista da Serra",
+  ilhas: "Condomínio Residencial Ilhas do Mar",
+  morada: "Morada Carioca",
+};
+
+const MANUTENCAO_GENERICA = new Set(["morada"]); // checklist padrão, não vindo do manual oficial da construtora
+
+const MANUTENCAO = {"alvarinho":[["Área de recreação infantil (playground)","Inspeção visual: limpeza, distâncias livres, alicerces, integridade estrutural","Diária"],["Água não potável / esgoto","Verificar e limpar ralos e grelhas de águas pluviais e calhas","Mensal"],["Água potável","Utilizar e limpar bombas em sistema de rodízio","Quinzenal"],["Água não potável / esgoto","Alternar chave no painel elétrico para alternância das bombas","Quinzenal"],["Água potável","Verificar estanqueidade e pressão da válvula redutora de pressão das colunas","Mensal"],["Água potável","Testar funcionamento e amperagem das bombas, verificar ruído e vazamentos","Mensal"],["Água potável","Verificar funcionalidade do extravasor (ladrão) dos reservatórios","Mensal"],["Água potável","Inspecionar tubulações pouco utilizadas para evitar entupimento","Mensal"],["Água potável","Verificar estanqueidade dos registros de gaveta","Mensal"],["Água potável","Verificar estanqueidade de válvula de descarga, torneira automática e eletrônica","Mensal"],["Combate a incêndio","Acionar bomba de incêndio (dreno da tubulação ou botoeira do hidrante)","Mensal"],["Combate a incêndio","Verificar portas corta-fogo: fechaduras, dobradiças, dispositivos anti-pânico","Mensal"],["Iluminação de emergência","Teste de funcionamento do sistema por uma hora","Mensal"],["Telefonia e interfones","Verificar funcionamento conforme instruções do fornecedor","Mensal"],["Cobertura das edificações","Revisão dos telhados: substituição de peças quebradas/deslocadas","Mensal"],["Cobertura das edificações","Verificar integridade de telhas, componentes e vedações","Mensal"],["Área de recreação infantil (playground)","Verificar integridade estrutural e partes móveis, reapertar parafusos","Mensal"],["SPDA","Verificar status dos dispositivos de proteção contra surtos (DPS)","Mensal"]],"levin":[["Jardins","Regar preferencialmente no início da manhã ou no fim da tarde (inverno)","Diária"],["Jardins","Regar (verão)","Diária"],["Água não potável","Verificar e limpar ralos e grelhas de águas pluviais","Mensal"],["Água potável","Utilizar e limpar bombas em sistema de rodízio","Quinzenal"],["Combate a incêndio - hidrantes","Verificar vazamentos e defeitos nas tubulações","Quinzenal"],["Iluminação de emergência - baterias comuns","Testar passagem de vigília para aceso","Quinzenal"],["Iluminação de emergência - sistema centralizado","Testar passagem de vigília para aceso","Quinzenal"],["Água potável","Verificar estanqueidade e pressão da válvula redutora de pressão","Mensal"],["Combate a incêndio - reserva e bomba","Verificar estanqueidade do sistema","Mensal"],["Combate a incêndio - reserva e bomba","Acionar bomba pelo dreno ou botoeira","Mensal"],["Combate a incêndio - hidrantes","Verificar conservação de caixas, esguichos, registros","Mensal"],["Combate a incêndio - hidrantes","Verificar se abrigos estão secos e desobstruídos","Mensal"],["Instalações elétricas","Limpeza e verificação de lâmpadas, luminárias e reatores","Mensal"],["Instalações elétricas","Verificar oxidação de partes metálicas de luminárias externas","Mensal"],["Instalações elétricas","Verificar e substituir lâmpadas queimadas","Mensal"],["Sistema de segurança","Verificar funcionamento de sensores infravermelho e cercas elétricas","Mensal"],["Sistema de segurança","Verificar funcionamento de todo o sistema","Mensal"],["SPDA","Verificar status dos DPS","Mensal"],["Combate a incêndio - portas corta-fogo","Verificar funcionamento automático e acessórios","Mensal"],["Ar condicionado","Limpeza de componentes e filtros","Mensal"],["Ar condicionado","Verificar funcionamento e isolamento da rede frigorígena","Mensal"],["Ar condicionado","Verificar componentes e providenciar reparos","Mensal"],["Sistema de exaustão mecânica","Limpeza do aparelho ventokit","Mensal"],["Combate a incêndio - pressurização de escada","Alternar operação dos ventiladores","Mensal"],["CFTV","Verificar funcionamento conforme fornecedor","Mensal"],["Telefonia e interfones","Verificar funcionamento conforme fornecedor","Mensal"],["Pedras naturais","Verificar e encerar peças polidas","Mensal"],["Pedras naturais","Enceramento em áreas de circulação intensa","Mensal"],["Área de recreação infantil","Verificar integridade dos brinquedos e fixações","Mensal"],["Área de recreação infantil","Verificar parafusos de fixação e acabamento","Mensal"],["Jardins","Executar manutenção do jardim","Mensal"],["Jardins","Manutenção das jardineiras","Mensal"],["Jardins","Controlar pragas, ervas daninhas, raízes mortas","Mensal"],["Ar condicionado","Limpeza dos componentes e filtros","Mensal"]],"happy":[["Água potável","Reservatórios de água potável (verificação)","Semanal"],["Iluminação de emergência - blocos autônomos","Teste de funcionamento","Quinzenal"],["Água potável","Bomba de água potável","Quinzenal"],["Bombas","Painel elétrico","Quinzenal"],["Piscina","Bomba de piscina","Quinzenal"],["Iluminação de emergência - baterias comuns","Teste de funcionamento","Quinzenal"],["Jardins e paisagismo","Manutenção geral","Mensal"],["Água não potável / esgoto","Limpeza","Mensal"],["Pedras naturais","Revestimento de paredes e pisos","Mensal"],["SPDA","Acionamento manual","Mensal"],["Telefonia e interfones","Funcionamento","Mensal"],["Água não potável - águas pluviais e drenagem","Limpeza","Mensal"],["Piso em blocos intertravados","Manutenção geral","Mensal"],["Espaço fitness","Fixação","Mensal"],["Bombas","Funcionamento","Mensal"]],"vistaserra":[["Instalações hidráulicas - Água fria","Reservatórios de água potável","Semanal"],["Iluminação de emergência - blocos autônomos","Teste de funcionamento","Quinzenal"],["Instalações hidráulicas - Água fria","Bomba de água potável","Quinzenal"],["Bombas","Painel elétrico","Quinzenal"],["Piscina","Bomba de piscina","Quinzenal"],["Iluminação de emergência - baterias comuns","Teste de funcionamento","Quinzenal"],["Jardins e paisagismo","Manutenção geral","Mensal"],["Instalações hidráulicas - Esgoto","Limpeza","Mensal"],["Revestimento de pedras naturais","Revestimento de paredes e pisos","Mensal"],["SPDA","Acionamento manual","Mensal"],["Telefonia e sistema de interfones","Funcionamento","Mensal"],["Instalações hidráulicas - Águas pluviais e drenagem","Limpeza","Mensal"],["Piso em blocos de concreto intertravados","Manutenção geral","Mensal"],["Espaço fitness","Fixação","Mensal"],["Bombas","Funcionamento","Mensal"]],"ilhas":[["Instalações hidráulicas - Água fria","Reservatórios de água potável","Semanal"],["Iluminação de emergência - blocos autônomos","Teste de funcionamento","Quinzenal"],["Instalações hidráulicas - Água fria","Bomba de água potável","Quinzenal"],["Bombas","Painel elétrico","Quinzenal"],["Piscina","Bomba de piscina","Quinzenal"],["Iluminação de emergência - baterias comuns","Teste de funcionamento","Quinzenal"],["Jardins e paisagismo","Manutenção geral","Mensal"],["Instalações hidráulicas - Esgoto","Limpeza","Mensal"],["Revestimento de pedras naturais","Revestimento de paredes e pisos","Mensal"],["SPDA","Acionamento manual","Mensal"],["Telefonia e sistema de interfones","Funcionamento","Mensal"],["Instalações hidráulicas - Águas pluviais e drenagem","Limpeza","Mensal"],["Piso em blocos de concreto intertravados","Manutenção geral","Mensal"],["Espaço fitness","Fixação","Mensal"],["Bombas","Funcionamento","Mensal"]],"morada":[["Bombas","Verificar funcionamento das bombas de água potável","Semanal"],["Portão de acesso","Verificar funcionamento de abertura/fechamento e sensores","Semanal"],["Bombas","Utilizar bombas em sistema de rodízio (evitar travamento)","Quinzenal"],["Quadros elétricos","Verificar painel elétrico geral (sem odor, sem aquecimento aparente)","Quinzenal"],["Jardinagem","Manutenção geral de jardins e áreas verdes","Mensal"],["Jardinagem","Corte de grama e controle de ervas daninhas","Mensal"],["Quadros elétricos","Testar disjuntores e reapertar conexões visíveis","Mensal"],["Painéis elétricos","Verificar sinalização e identificação dos circuitos","Mensal"],["Portão de acesso","Lubrificar dobradiças, trilhos e verificar motor","Mensal"],["Bombas","Verificar ruídos, vazamentos e amperagem das bombas","Mensal"]]};
+
+const BUCKET_ORDER = ["Diária","Semanal","Quinzenal","Mensal"];
+
+let currentItems = []; // items being checked for this session
+let photoData = {}; // itemIndex -> {antes, depois}
+let sigDrawing = false;
+let sigCtx = null;
+
+function initCondoSelect(){
+  const sel = document.getElementById("fCondo");
+  Object.entries(CONDOS).forEach(([id, nome])=>{
+    if((MANUTENCAO[id]||[]).length){
+      const opt = document.createElement("option");
+      opt.value = id; opt.textContent = nome;
+      sel.appendChild(opt);
+    }
+  });
+}
+
+function onCondoChange(){
+  const condoId = document.getElementById("fCondo").value;
+  const wrap = document.getElementById("periodicidadeWrap");
+  const sel = document.getElementById("fPeriodicidade");
+  const aviso = document.getElementById("genericoAviso");
+  sel.innerHTML = '<option value="">Selecione...</option>';
+  hideDownstream();
+  if(!condoId){ wrap.style.display = "none"; aviso.classList.add("hidden"); return; }
+  aviso.classList.toggle("hidden", !MANUTENCAO_GENERICA.has(condoId));
+  const items = MANUTENCAO[condoId] || [];
+  const available = BUCKET_ORDER.filter(b => items.some(it=>it[2]===b));
+  available.forEach(b=>{
+    const opt = document.createElement("option");
+    opt.value = b; opt.textContent = b;
+    sel.appendChild(opt);
+  });
+  wrap.style.display = "block";
+}
+
+function hideDownstream(){
+  document.getElementById("dadosVisitaCard").classList.add("hidden");
+  document.getElementById("checklistCard").classList.add("hidden");
+  document.getElementById("assinaturaCard").classList.add("hidden");
+  document.getElementById("actionsWrap").classList.add("hidden");
+}
+
+function onPeriodicidadeChange(){
+  const condoId = document.getElementById("fCondo").value;
+  const bucket = document.getElementById("fPeriodicidade").value;
+  if(!bucket){ hideDownstream(); return; }
+  currentItems = (MANUTENCAO[condoId] || []).filter(it=>it[2]===bucket);
+  photoData = {};
+  renderChecklist();
+  document.getElementById("dadosVisitaCard").classList.remove("hidden");
+  document.getElementById("checklistCard").classList.remove("hidden");
+  document.getElementById("assinaturaCard").classList.remove("hidden");
+  document.getElementById("actionsWrap").classList.remove("hidden");
+  const today = new Date().toISOString().slice(0,10);
+  document.getElementById("fData").value = today;
+}
+
+function renderChecklist(){
+  const container = document.getElementById("checklistItems");
+  if(!currentItems.length){ container.innerHTML = '<div class="bucket-empty">Nenhum item cadastrado para essa periodicidade.</div>'; return; }
+  container.innerHTML = currentItems.map((it, i)=>`
+    <div class="item-card" data-idx="${i}">
+      <div class="title">${it[0]}</div>
+      <div class="sub">${it[1]}</div>
+      <div class="status-row" data-role="status">
+        <div class="status-opt" data-status="Sim">✓ Realizado</div>
+        <div class="status-opt" data-status="Parcial">△ Parcial</div>
+        <div class="status-opt" data-status="Não">✕ Não feito</div>
+      </div>
+      <div class="photo-row">
+        <label class="photo-btn" data-role="foto-antes" for="input-antes-${i}">📷 Foto antes</label>
+        <label class="photo-btn" data-role="foto-depois" for="input-depois-${i}">📷 Foto depois</label>
+      </div>
+      <input type="file" accept="image/*" id="input-antes-${i}" data-role="input-antes" style="position:absolute; width:1px; height:1px; opacity:0; overflow:hidden;">
+      <input type="file" accept="image/*" id="input-depois-${i}" data-role="input-depois" style="position:absolute; width:1px; height:1px; opacity:0; overflow:hidden;">
+      <textarea placeholder="Observação (opcional)" data-role="obs"></textarea>
+    </div>
+  `).join("");
+
+  container.querySelectorAll(".item-card").forEach(card=>{
+    const idx = card.dataset.idx;
+    card.querySelectorAll(".status-opt").forEach(opt=>{
+      opt.onclick = ()=>{
+        card.querySelectorAll(".status-opt").forEach(o=>o.classList.remove("sel-sim","sel-nao","sel-parcial"));
+        const s = opt.dataset.status;
+        opt.classList.add(s==="Sim"?"sel-sim":s==="Não"?"sel-nao":"sel-parcial");
+        card.dataset.status = s;
+      };
+    });
+    const antesBtn = card.querySelector('[data-role="foto-antes"]');
+    const antesInput = card.querySelector('[data-role="input-antes"]');
+    const depoisBtn = card.querySelector('[data-role="foto-depois"]');
+    const depoisInput = card.querySelector('[data-role="input-depois"]');
+    antesBtn.onclick = (e)=>{ e.preventDefault(); antesInput.click(); };
+    depoisBtn.onclick = (e)=>{ e.preventDefault(); depoisInput.click(); };
+    antesInput.onchange = (e)=>handlePhoto(e, idx, "antes", antesBtn);
+    depoisInput.onchange = (e)=>handlePhoto(e, idx, "depois", depoisBtn);
+  });
+}
+
+function handlePhoto(e, idx, which, btn){
+  const file = e.target.files[0];
+  if(!file) return;
+  const originalHTML = btn.innerHTML;
+  btn.textContent = "Carregando...";
+  const reader = new FileReader();
+  reader.onload = (ev)=>{
+    photoData[idx] = photoData[idx] || {};
+    photoData[idx][which] = ev.target.result;
+    btn.innerHTML = `<img src="${ev.target.result}" alt="foto">`;
+  };
+  reader.onerror = ()=>{
+    btn.textContent = "Falha ao ler a foto — toque para tentar de novo";
+  };
+  reader.readAsDataURL(file);
+}
+
+// ---------------- Signature pad ----------------
+function initSigPad(){
+  const canvas = document.getElementById("sigPad");
+  function resize(){
+    const ratio = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * ratio;
+    canvas.height = rect.height * ratio;
+    sigCtx = canvas.getContext("2d");
+    sigCtx.scale(ratio, ratio);
+    sigCtx.strokeStyle = "#231C30";
+    sigCtx.lineWidth = 2;
+    sigCtx.lineCap = "round";
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  function pos(e){
+    const rect = canvas.getBoundingClientRect();
+    const t = e.touches ? e.touches[0] : e;
+    return {x: t.clientX - rect.left, y: t.clientY - rect.top};
+  }
+  function start(e){ sigDrawing = true; const p = pos(e); sigCtx.beginPath(); sigCtx.moveTo(p.x, p.y); e.preventDefault(); }
+  function move(e){ if(!sigDrawing) return; const p = pos(e); sigCtx.lineTo(p.x, p.y); sigCtx.stroke(); e.preventDefault(); }
+  function end(){ sigDrawing = false; }
+
+  canvas.addEventListener("mousedown", start);
+  canvas.addEventListener("mousemove", move);
+  window.addEventListener("mouseup", end);
+  canvas.addEventListener("touchstart", start, {passive:false});
+  canvas.addEventListener("touchmove", move, {passive:false});
+  canvas.addEventListener("touchend", end);
+
+  document.getElementById("btnLimparAssinatura").onclick = ()=>{
+    sigCtx.clearRect(0,0,canvas.width,canvas.height);
+  };
+}
+
+// ---------------- PDF generation ----------------
+function buildPDF(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({unit:"mm", format:"a4"});
+  const pageW = 210, marginX = 14;
+  let y = 0;
+
+  function purpleBar(title, sub){
+    doc.setFillColor(78,46,130);
+    doc.rect(0, y, pageW, 16, "F");
+    doc.setTextColor(255,255,255);
+    doc.setFont("helvetica","bold"); doc.setFontSize(13);
+    doc.text(title, marginX, y+7);
+    doc.setFont("helvetica","normal"); doc.setFontSize(8.5);
+    doc.text(sub || "", marginX, y+13);
+    y += 22;
+    doc.setTextColor(35,28,48);
+  }
+  function checkPageBreak(needed){
+    if(y + needed > 285){ doc.addPage(); y = 12; }
+  }
+  function fieldLine(label, value){
+    doc.setFont("helvetica","bold"); doc.setFontSize(8.5); doc.setTextColor(110,100,128);
+    doc.text(label.toUpperCase(), marginX, y);
+    doc.setFont("helvetica","normal"); doc.setFontSize(10.5); doc.setTextColor(35,28,48);
+    doc.text(value || "—", marginX, y+5);
+    y += 11;
+  }
+
+  const condoId = document.getElementById("fCondo").value;
+  const bucket = document.getElementById("fPeriodicidade").value;
+  const condoNome = CONDOS[condoId] || "";
+
+  purpleBar("Relatório de Manutenção Periódica", `${condoNome} · Periodicidade: ${bucket}`);
+
+  fieldLine("Responsável pela visita", document.getElementById("fResponsavel").value);
+  const row1y = y;
+  doc.setFont("helvetica","bold"); doc.setFontSize(8.5); doc.setTextColor(110,100,128);
+  doc.text("DATA", marginX, row1y);
+  doc.text("INÍCIO", marginX+90, row1y);
+  doc.setFont("helvetica","normal"); doc.setFontSize(10.5); doc.setTextColor(35,28,48);
+  doc.text(formatDateBR(document.getElementById("fData").value), marginX, row1y+5);
+  doc.text(document.getElementById("fInicio").value || "—", marginX+90, row1y+5);
+  y += 14;
+
+  doc.setDrawColor(228,222,240); doc.line(marginX, y, pageW-marginX, y); y += 8;
+
+  doc.setFont("helvetica","bold"); doc.setFontSize(12); doc.setTextColor(78,46,130);
+  doc.text("Checklist", marginX, y); y += 8;
+
+  const cards = document.querySelectorAll("#checklistItems .item-card");
+  cards.forEach((card, idx)=>{
+    checkPageBreak(30);
+    const status = card.dataset.status || "Não preenchido";
+    const obs = card.querySelector('[data-role="obs"]').value;
+    const title = currentItems[idx][0];
+    const sub = currentItems[idx][1];
+
+    doc.setFont("helvetica","bold"); doc.setFontSize(10); doc.setTextColor(35,28,48);
+    const titleLines = doc.splitTextToSize(title, 130);
+    doc.text(titleLines, marginX, y);
+    y += titleLines.length * 4.6;
+    doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(110,100,128);
+    const subLines = doc.splitTextToSize(sub, 130);
+    doc.text(subLines, marginX, y);
+    y += subLines.length * 4;
+
+    const statusColor = status === "Sim" ? [47,138,91] : status === "Não" ? [198,67,47] : status === "Parcial" ? [201,138,29] : [150,150,150];
+    doc.setFillColor(...statusColor);
+    doc.roundedRect(pageW-marginX-32, y-14, 32, 7, 2, 2, "F");
+    doc.setTextColor(255,255,255); doc.setFont("helvetica","bold"); doc.setFontSize(8.5);
+    doc.text(status, pageW-marginX-16, y-9, {align:"center"});
+    doc.setTextColor(35,28,48);
+
+    if(obs){
+      doc.setFont("helvetica","italic"); doc.setFontSize(8.5); doc.setTextColor(80,72,96);
+      const obsLines = doc.splitTextToSize("Obs: " + obs, 170);
+      checkPageBreak(obsLines.length*4+4);
+      doc.text(obsLines, marginX, y);
+      y += obsLines.length * 4 + 2;
+    }
+
+    const pd = photoData[idx];
+    if(pd && (pd.antes || pd.depois)){
+      checkPageBreak(45);
+      const imgW = 78, imgH = 42;
+      if(pd.antes){
+        try{ doc.addImage(pd.antes, "JPEG", marginX, y, imgW, imgH); }catch(e){}
+        doc.setFontSize(7.5); doc.setTextColor(110,100,128);
+        doc.text("ANTES", marginX, y+imgH+4);
+      }
+      if(pd.depois){
+        try{ doc.addImage(pd.depois, "JPEG", marginX+imgW+8, y, imgW, imgH); }catch(e){}
+        doc.setFontSize(7.5); doc.setTextColor(110,100,128);
+        doc.text("DEPOIS", marginX+imgW+8, y+imgH+4);
+      }
+      y += imgH + 10;
+    }
+
+    doc.setDrawColor(228,222,240); doc.line(marginX, y, pageW-marginX, y);
+    y += 8;
+  });
+
+  checkPageBreak(50);
+  doc.setFont("helvetica","bold"); doc.setFontSize(12); doc.setTextColor(78,46,130);
+  doc.text("Assinatura", marginX, y); y += 7;
+  doc.setFont("helvetica","normal"); doc.setFontSize(9.5); doc.setTextColor(35,28,48);
+  doc.text(document.getElementById("fNomeAssinatura").value || "—", marginX, y); y += 4;
+
+  const sigCanvas = document.getElementById("sigPad");
+  try{
+    const sigDataUrl = sigCanvas.toDataURL("image/png");
+    doc.addImage(sigDataUrl, "PNG", marginX, y, 80, 25);
+  }catch(e){}
+  y += 30;
+
+  doc.setFont("helvetica","normal"); doc.setFontSize(7.5); doc.setTextColor(150,150,150);
+  doc.text("Super Síndica do Alto Tietê · gerado em " + new Date().toLocaleString("pt-BR"), marginX, 292);
+
+  return doc;
+}
+
+function formatDateBR(iso){
+  if(!iso) return "—";
+  const [y,m,d] = iso.split("-");
+  return `${d}/${m}/${y}`;
+}
+
+function pdfFileName(){
+  const condoId = document.getElementById("fCondo").value;
+  const bucket = document.getElementById("fPeriodicidade").value;
+  const date = document.getElementById("fData").value || "";
+  return `Manutencao_${condoId}_${bucket}_${date}.pdf`.replace(/\s+/g,"_");
+}
+
+function validateForm(){
+  if(!document.getElementById("fCondo").value){ alert("Selecione o condomínio."); return false; }
+  if(!document.getElementById("fPeriodicidade").value){ alert("Selecione a periodicidade."); return false; }
+  if(!document.getElementById("fResponsavel").value.trim()){ alert("Informe o responsável pela visita."); return false; }
+  return true;
+}
+
+let downloadsCap = null;
+
+async function offerDownload(doc, filename){
+  const blob = doc.output("blob");
+  if(downloadsCap){
+    try{
+      await downloadsCap.save({filename, data: blob});
+      return true;
+    }catch(err){
+      if(err && err.code === "declined") return false;
+      // qualquer outro erro cai no fallback abaixo
+    }
+  }
+  // Fallback (fora do ambiente Claude, ex: link aberto direto no navegador do celular)
+  try{
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(url), 4000);
+    return true;
+  }catch(e){
+    alert("Não foi possível baixar o PDF. Tente novamente.");
+    return false;
+  }
+}
+
+document.getElementById("btnGerarPDF").onclick = async ()=>{
+  if(!validateForm()) return;
+  const doc = buildPDF();
+  await offerDownload(doc, pdfFileName());
+};
+
+document.getElementById("btnWhatsapp").onclick = async ()=>{
+  if(!validateForm()) return;
+  const doc = buildPDF();
+  const blob = doc.output("blob");
+  const fileName = pdfFileName();
+  const file = new File([blob], fileName, {type:"application/pdf"});
+  if(navigator.canShare && navigator.canShare({files:[file]})){
+    try{
+      await navigator.share({files:[file], title:"Relatório de Manutenção", text:"Relatório de manutenção periódica — Super Síndica"});
+      return;
+    }catch(e){ /* usuário cancelou ou falhou — cai no fallback */ }
+  }
+  // Fallback: baixa o PDF e abre o WhatsApp com uma mensagem (anexo manual)
+  await offerDownload(doc, fileName);
+  const msg = encodeURIComponent("Relatório de manutenção periódica gerado — segue o PDF em anexo.");
+  window.open(`https://wa.me/?text=${msg}`, "_blank");
+};
+
+document.getElementById("btnLimparForm").onclick = ()=>{
+  if(!confirm("Limpar todo o formulário?")) return;
+  document.getElementById("fCondo").value = "";
+  onCondoChange();
+  document.getElementById("fResponsavel").value = "";
+  document.getElementById("fNomeAssinatura").value = "";
+  const canvas = document.getElementById("sigPad");
+  sigCtx && sigCtx.clearRect(0,0,canvas.width,canvas.height);
+};
+
+document.getElementById("fCondo").onchange = onCondoChange;
+document.getElementById("fPeriodicidade").onchange = onPeriodicidadeChange;
+
+initCondoSelect();
+initSigPad();
+if(typeof claude !== "undefined" && claude && claude.use){
+  claude.use("downloads").then(d => downloadsCap = d).catch(()=>{});
+}
+</script>
+
+
+</body></html>
